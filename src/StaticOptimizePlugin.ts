@@ -1,5 +1,5 @@
 import * as Compiler from 'webpack/lib/Compiler';
-import { Program, VariableDeclaration } from 'estree';
+import { Identifier, Program, VariableDeclaration } from 'estree';
 import walk from './util/walk';
 import ConstDependency = require('webpack/lib/dependencies/ConstDependency');
 import NormalModule = require('webpack/lib/NormalModule');
@@ -62,9 +62,8 @@ export default class HasPlugin {
 								if (callee.type === 'Identifier' && callee.name === 'require' && args.length === 1) {
 									const [ arg ] = args;
 									if (arg.type === 'Literal' && typeof arg.value === 'string' && HAS_MID.test(arg.value)) {
-										if (id.type === 'Identifier') {
-											hasIdentifier = id.name;
-										}
+										// casting as `id` will always be an Identifier, but this isn't known to the compiler
+										hasIdentifier = (id as Identifier).name;
 										found = true;
 									}
 								}
