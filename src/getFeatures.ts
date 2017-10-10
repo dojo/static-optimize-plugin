@@ -25,7 +25,7 @@ function load(mid: string, isRunningInNode = true): FeatureMap | undefined {
 
 /**
  * Retrieve the largest set of non-conflicting features for the supplied feature sets.
- * @param features The features to find look for
+ * @param features The features to look for
  * @param isRunningInNode Optional parameter that can be used to indicate whether
  * this is running in Node or a browser environment.
  */
