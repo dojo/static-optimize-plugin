@@ -71,5 +71,10 @@ registerSuite({
 		assert.isTrue(logStub.calledOnce, 'log should have been called');
 		assert.strictEqual(logStub.lastCall.args[0], 'Cannot resolve feature set:');
 		assert.strictEqual(logStub.lastCall.args[1], 'foo');
+	},
+
+	'should use require if running in node (returns empty set in browser)'() {
+		getFeatures('ie11');
+		assert.deepEqual(getFeatures('ie11'), {});
 	}
 });

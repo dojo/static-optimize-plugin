@@ -11,7 +11,6 @@ export type Features = string | string[];
 function load(mid: string, isRunningInNode = true): FeatureMap | undefined {
 	try {
 		let result: FeatureMap;
-		/* istanbul ignore if */
 		if (isRunningInNode) {
 			result = require(mid);
 		}
